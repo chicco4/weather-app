@@ -1,5 +1,5 @@
 # weather-app
-A simple weather-app game written in html, css and javascript using webpack 
+A simple weather-app game written in html, css and javascript using webpack.
 
 API: https://openweathermap.org/api
 
