@@ -35,9 +35,53 @@ main {
   display: flex;
   flex-direction: column;
 
-  justify-content: center;
   align-items: center;
-  background-color: lightcyan;
+  padding-top: 1em;
+  gap: 1em;
+  font-size: 1.6rem;
+}
+
+input {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: lightgrey;
+  border: 2px solid transparent;
+  outline: none;
+  font-size: inherit;
+}
+
+#searchText {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  font-size: inherit;
+}
+
+#searchButton {
+  cursor: pointer;
+  transition: border 0.2s ease-in-out;
+}
+
+#searchButton:active {
+  background-color: lightyellow;
+}
+
+input:hover {
+  border-color: black;
+}
+
+.search-result {
+  display: none;
+  padding: 6rem;
+  border-radius: 5px;
+  background-color: lightgrey;
+  font-size: 30px;
+}
+
+.search-result.active {
+  display: block;
 }
 
 /* footer */

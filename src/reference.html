@@ -1,0 +1,53 @@
+<!-- USED WITH LIVESERVER IN PORT 5000 TO KNOW HOW THE VARIUS PAGES SHOULD LOOK-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>reference</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./styles/global.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>
+            Weather app
+        </h1>
+    </header>
+
+    <main>
+
+        <form id="searchForm">
+            <input id="searchText" type="text" placeholder="Enter city name">
+            <input id="searchButton" type="button" value="Search">
+        </form>
+
+        <div class="search-result active" id="searchResult">
+            <h3 id="cityName">Paris</h3>
+            <p id="temperature">27.12 °C</p>
+            <p id="apparent">Fells like: 26.75 °C</p>
+            <p id="humidity">Humidity: 36 %</p>
+            <p id="wind">Wind: 5.14 km/h</p>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+
+        <p>
+            Copyright ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+        </p>
+        <a href="https://github.com/chicco4" target="_blank">
+            chicco4
+        </a>
+
+    </footer>
+
+</body>
+
+</html>

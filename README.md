@@ -20,6 +20,7 @@ API: https://openweathermap.org/api or https://open-meteo.com/en
 - [ ] import css and modules
 - [ ] basic skeleton
 - [ ] basic css
+- [ ] first fetch geolocation then weather
 - [ ] convert to use only js to create everything
 - [ ] use good material design
 - [ ] good OOP?

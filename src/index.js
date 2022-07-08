@@ -8,7 +8,7 @@ function createHeader() {
   const header = document.createElement("header");
 
   const pageTitle = document.createElement("h1");
-  pageTitle.textContent = "Weather-app";
+  pageTitle.textContent = "Weather app";
 
   header.appendChild(pageTitle);
 
@@ -19,7 +19,17 @@ function createHeader() {
 
 function createMain() {
   const main = document.createElement("main");
-  main.textContent = "main";
+
+  const searchForm = document.createElement("form");
+
+  const searchInput = document.createElement("input");
+  searchInput.type = "text";
+  searchInput.placeholder = "Enter city name";
+
+  const searchBtn = document.createElement("input");
+  searchBtn.value = "Search";
+  
+
   return main;
 }
 
