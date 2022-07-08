@@ -2,7 +2,7 @@
 
 A simple weather-app written in html, css and javascript using webpack.
 
-API: https://openweathermap.org/api
+API: https://openweathermap.org/api or https://open-meteo.com/en
 
 [Live Demo](https://chicco4.github.io/weather-app/) :point_left:
 
