@@ -1,0 +1,31 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "A simple weather-app written in html, css and javascript using webpack.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chicco4/weather-app.git"
+  },
+  "keywords": [],
+  "author": "chicco4",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chicco4/weather-app/issues"
+  },
+  "homepage": "https://github.com/chicco4/weather-app#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "standard": "^17.0.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
+  }
+}
