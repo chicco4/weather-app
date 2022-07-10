@@ -28,7 +28,6 @@ function createMain() {
 
   const searchBtn = document.createElement("input");
   searchBtn.value = "Search";
-  
 
   return main;
 }
