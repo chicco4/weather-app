@@ -35,9 +35,10 @@ function createMain() {
 
   searchButton.addEventListener("click", (e) => {
     console.log("button clicked");
-    const data = getCoordinates(searchText.value);
-    /** get latitude and longitude of the first result */
-    console.log(data);
+    const coord = getCoord(searchText.value);
+    console.log(coord);
+    const weather = getWeather(coord);
+    console.log(weather);
   });
 
   searchForm.appendChild(searchText);
@@ -48,12 +49,36 @@ function createMain() {
   return main;
 }
 
-async function getCoordinates(location) {
-  const link =
+/** ritorna le coordinate del primo elemento */
+async function getCoord(location) {
+  const api_url =
     "https://geocoding-api.open-meteo.com/v1/search?name=" + location;
   try {
-    const response = await fetch(link, { mode: "cors" });
-    return response.json();
+    const response = await fetch(api_url);
+    const data = await response.json();
+    let lat = data.results[0].latitude;
+    let lon = data.results[0].longitude;
+    let time = data.results[0].timezone;
+    return { lat, lon, time };
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+async function getWeather(coord) {
+  const api_url =
+    "https://api.open-meteo.com/v1/forecast?latitude=" +
+    coord.lat +
+    "&longitude=" +
+    coord.lon +
+    "&hourly=weathercode&timezone=" +
+    "Europe%2FLondon";
+  //const api_url = "https://api.open-meteo.com/v1/forecast?latitude=51.5002&longitude=-0.1262&hourly=weathercode&timezone=Europe%2FLondon";
+  try {
+    const response = await fetch(api_url);
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.log(error);
     return null;
