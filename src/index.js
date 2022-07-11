@@ -21,15 +21,40 @@ function createMain() {
   const main = document.createElement("main");
 
   const searchForm = document.createElement("form");
+  searchForm.setAttribute("id", "searchForm");
 
-  const searchInput = document.createElement("input");
-  searchInput.type = "text";
-  searchInput.placeholder = "Enter city name";
+  const searchText = document.createElement("input");
+  searchText.setAttribute("id", "searchText");
+  searchText.type = "text";
+  searchText.placeholder = "Enter city name";
 
-  const searchBtn = document.createElement("input");
-  searchBtn.value = "Search";
+  const searchButton = document.createElement("input");
+  searchButton.setAttribute("id", "searchButton");
+  searchButton.type = "button";
+  searchButton.value = "Search";
+
+  searchButton.addEventListener("click", (e) => {
+    console.log("button clicked");
+    console.log(getData(searchText.value));
+  });
+
+  searchForm.appendChild(searchText);
+  searchForm.appendChild(searchButton);
+
+  main.appendChild(searchForm);
 
   return main;
+}
+
+async function getData(location) {
+  const link = "https://geocoding-api.open-meteo.com/v1/search?name="+location;
+  try {
+    const response = await fetch(link, { mode: "cors" });
+    return response.json();
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 }
 
 /* FOOTER */
