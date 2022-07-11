@@ -69,9 +69,9 @@ async function getCoord(location) {
 async function getWeather(coord) {
   const api_url =
     "https://api.open-meteo.com/v1/forecast?latitude=" +
-    coord.lat +
+    parseFloat(coord.lat) +
     "&longitude=" +
-    coord.lon +
+    parseFloat(coord.lon) +
     "&hourly=weathercode&timezone=" +
     "Europe%2FLondon";
   //const api_url = "https://api.open-meteo.com/v1/forecast?latitude=51.5002&longitude=-0.1262&hourly=weathercode&timezone=Europe%2FLondon";
