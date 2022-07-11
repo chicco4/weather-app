@@ -35,7 +35,9 @@ function createMain() {
 
   searchButton.addEventListener("click", (e) => {
     console.log("button clicked");
-    console.log(getData(searchText.value));
+    const data = getCoordinates(searchText.value);
+    /** get latitude and longitude of the first result */
+    console.log(data);
   });
 
   searchForm.appendChild(searchText);
@@ -46,8 +48,9 @@ function createMain() {
   return main;
 }
 
-async function getData(location) {
-  const link = "https://geocoding-api.open-meteo.com/v1/search?name="+location;
+async function getCoordinates(location) {
+  const link =
+    "https://geocoding-api.open-meteo.com/v1/search?name=" + location;
   try {
     const response = await fetch(link, { mode: "cors" });
     return response.json();
