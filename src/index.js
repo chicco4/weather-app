@@ -39,6 +39,8 @@ function createMain() {
     console.log(coord);
     const weather = getWeather(coord);
     console.log(weather);
+
+    updateSearchResult();
   });
 
   searchForm.appendChild(searchText);
@@ -49,7 +51,11 @@ function createMain() {
   return main;
 }
 
-/** ritorna le coordinate del primo elemento */
+function updateSearchResult(){
+  /** update search-result and activate it */
+  
+}
+
 async function getCoord(location) {
   const api_url =
     "https://geocoding-api.open-meteo.com/v1/search?name=" + location;
@@ -66,20 +72,50 @@ async function getCoord(location) {
   }
 }
 
+function getWeatherfrom_w_code(code) {
+  if (code === 0) return "Clear sky";
+  if (code === 1) return "Mainly clear";
+  if (code === 2) return "partly cloudy";
+  if (code === 3) return "overcast";
+  if (code === 45) return "Fog";
+  if (code === 48) return "depositing rime fog";
+  if (code === 51) return "Drizzle: Light";
+  if (code === 53) return "Drizzle: moderate";
+  if (code === 55) return "Drizzle: dense intensity";
+  if (code === 56) return "Freezing Drizzle: Light";
+  if (code === 57) return "Freezing Drizzle: dense intensity";
+  if (code === 61) return "Rain: Slight";
+  if (code === 63) return "Rain: moderate";
+  if (code === 65) return "Rain: heavy intensity";
+  if (code === 66) return "Freezing Rain: Light";
+  if (code === 67) return "Freezing Rain: heavy intensity";
+  if (code === 71) return "Snow fall: Slight";
+  if (code === 73) return "Snow fall: moderate";
+  if (code === 75) return "Snow fall: heavy intensity";
+  if (code === 77) return "Snow grains";
+  if (code === 80) return "Rain showers: Slight";
+  if (code === 81) return "Rain showers: moderate";
+  if (code === 82) return "Rain showers: violent";
+  if (code === 85) return "Snow showers slight";
+  if (code === 86) return "Snow showers heavy";
+  if (code === 95) return "Thunderstorm: Slight";
+  if (code === 96) return "Thunderstorm: moderate";
+  if (code === 99) return "Thunderstorm: heavy hail";
+  return "NAN";
+}
+
+/** try to fetch only first values */
 async function getWeather(coord) {
-  /** const api_url =
-    "https://api.open-meteo.com/v1/forecast?latitude=" +
-    parseFloat(coord.lat) +
-    "&longitude=" +
-    parseFloat(coord.lon) +
-    "&hourly=weathercode&timezone=" +
-    "Europe%2FLondon";*/
   const api_url =
-    "https://api.open-meteo.com/v1/forecast?latitude=51.5002&longitude=-0.1262&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,windspeed_10m&timezone=Europe%2FLondon";
+    "https://api.open-meteo.com/v1/forecast?latitude=51.5002&longitude=-0.1262&daily=weathercode,temperature_2m_max,apparent_temperature_max&timezone=Europe%2FLondon";
   try {
     const response = await fetch(api_url);
     const data = await response.json();
-    return data;
+    let temp = data.daily.temperature_2m_max[0];
+    let t_temp = data.daily.apparent_temperature_max[0];
+    let w_code = data.daily.weathercode[0];
+    w_code = getWeatherfrom_w_code(w_code);
+    return { temp, t_temp, w_code };
   } catch (error) {
     console.log(error);
     return null;
