@@ -39,8 +39,6 @@ function createMain() {
     const coord = getCoord(searchText.value);
     console.log(coord);
     const weat = getWeather(coord);
-    console.log(weat);
-
     updateSearchResult(weat);
   });
 
@@ -72,14 +70,16 @@ function createMain() {
   return main;
 }
 
+/** for some reason i cant get the values out of weat */
 function updateSearchResult(weat) {
+  console.log(weat);
   console.log(weat.temp);
   console.log(weat.t_temp);
   console.log(weat.w_code);
-  document.getElementById("cityName").textContent = searchText.value;
-  document.getElementById("temperature").textContent = String(weat.temp);
-  document.getElementById("apparent").textContent = String(weat.t_temp);
-  document.getElementById("weather").textContent = String(weat.w_code);
+  cityName.textContent = searchText.value;
+  temperature.textContent = weat.temp;
+  apparent.textContent = weat.t_temp;
+  weather.textContent = weat.w_code;
   /** set active */
   searchResult.classList.add("active");
 }
