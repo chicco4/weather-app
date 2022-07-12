@@ -25,5 +25,6 @@ API: https://openweathermap.org/api or https://open-meteo.com/en
 - [ ] use good material design
 - [ ] good OOP?
 - [ ] good SOLID?
+- [ ] try to display fetch data using chart.js
 
 tips from: https://www.theodinproject.com/lessons/node-path-javascript-weather-app
