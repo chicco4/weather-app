@@ -67,14 +67,15 @@ async function getCoord(location) {
 }
 
 async function getWeather(coord) {
-  const api_url =
+  /** const api_url =
     "https://api.open-meteo.com/v1/forecast?latitude=" +
     parseFloat(coord.lat) +
     "&longitude=" +
     parseFloat(coord.lon) +
     "&hourly=weathercode&timezone=" +
-    "Europe%2FLondon";
-  //const api_url = "https://api.open-meteo.com/v1/forecast?latitude=51.5002&longitude=-0.1262&hourly=weathercode&timezone=Europe%2FLondon";
+    "Europe%2FLondon";*/
+  const api_url =
+    "https://api.open-meteo.com/v1/forecast?latitude=51.5002&longitude=-0.1262&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,windspeed_10m&timezone=Europe%2FLondon";
   try {
     const response = await fetch(api_url);
     const data = await response.json();
