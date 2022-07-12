@@ -20,6 +20,7 @@ function createHeader() {
 function createMain() {
   const main = document.createElement("main");
 
+  /** SEARCH FORM */
   const searchForm = document.createElement("form");
   searchForm.setAttribute("id", "searchForm");
 
@@ -37,39 +38,50 @@ function createMain() {
     console.log("button clicked");
     const coord = getCoord(searchText.value);
     console.log(coord);
-    const weather = getWeather(coord);
-    console.log(weather);
+    const weat = getWeather(coord);
+    console.log(weat);
 
-    updateSearchResult();
+    updateSearchResult(weat);
   });
 
   searchForm.appendChild(searchText);
   searchForm.appendChild(searchButton);
 
+  /** SEARCH RESULT */
+  const searchResult = document.createElement("div");
+  searchResult.setAttribute("id", "searchResult");
+  searchResult.classList.add("search-result");
+
+  const cityName = document.createElement("h3");
+  cityName.setAttribute("id", "cityName");
+  const temperature = document.createElement("p");
+  temperature.setAttribute("id", "temperature");
+  const apparent = document.createElement("p");
+  apparent.setAttribute("id", "apparent");
+  const weather = document.createElement("p");
+  weather.setAttribute("id", "weather");
+
+  searchResult.appendChild(cityName);
+  searchResult.appendChild(temperature);
+  searchResult.appendChild(apparent);
+  searchResult.appendChild(weather);
+
   main.appendChild(searchForm);
+  main.appendChild(searchResult);
 
   return main;
 }
 
-function updateSearchResult(){
-  /** update search-result and activate it */
-  
-}
-
-async function getCoord(location) {
-  const api_url =
-    "https://geocoding-api.open-meteo.com/v1/search?name=" + location;
-  try {
-    const response = await fetch(api_url);
-    const data = await response.json();
-    let lat = data.results[0].latitude;
-    let lon = data.results[0].longitude;
-    let time = data.results[0].timezone;
-    return { lat, lon, time };
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
+function updateSearchResult(weat) {
+  console.log(weat.temp);
+  console.log(weat.t_temp);
+  console.log(weat.w_code);
+  document.getElementById("cityName").textContent = searchText.value;
+  document.getElementById("temperature").textContent = String(weat.temp);
+  document.getElementById("apparent").textContent = String(weat.t_temp);
+  document.getElementById("weather").textContent = String(weat.w_code);
+  /** set active */
+  searchResult.classList.add("active");
 }
 
 function getWeatherfrom_w_code(code) {
@@ -113,9 +125,25 @@ async function getWeather(coord) {
     const data = await response.json();
     let temp = data.daily.temperature_2m_max[0];
     let t_temp = data.daily.apparent_temperature_max[0];
-    let w_code = data.daily.weathercode[0];
-    w_code = getWeatherfrom_w_code(w_code);
+    let code = data.daily.weathercode[0];
+    let w_code = getWeatherfrom_w_code(code);
     return { temp, t_temp, w_code };
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+async function getCoord(location) {
+  const api_url =
+    "https://geocoding-api.open-meteo.com/v1/search?name=" + location;
+  try {
+    const response = await fetch(api_url);
+    const data = await response.json();
+    let lat = data.results[0].latitude;
+    let lon = data.results[0].longitude;
+    let time = data.results[0].timezone;
+    return { lat, lon, time };
   } catch (error) {
     console.log(error);
     return null;
